@@ -6,9 +6,6 @@ public class Items {
     private double str;
     private double intel;
 
-    private double xI;
-    private double yI;
-
     public Vector position;
     public Vector velocity;
     public Image image;

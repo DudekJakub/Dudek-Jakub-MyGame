@@ -9,11 +9,32 @@ public class Sprite {
     public Image image;
     public Rectangle boundary;
 
+    private double str;
+    private double intel;
+    private double HP;
+    private double MP;
 
-    public Sprite() {
+    public Sprite(double str, double intel, double HP) {
+
+        this.str = str;
+        this.intel = intel;
+        this.HP = HP;
+
         position = new Vector(0,0);
         velocity = new Vector(0,0);
         boundary = new Rectangle(0,0,0,0);
+    }
+
+    public double getStr() {
+        return str;
+    }
+
+    public double getIntel() {
+        return intel;
+    }
+
+    public double getHP() {
+        return HP;
     }
 
     public Vector getPosition() {
@@ -53,4 +74,5 @@ public class Sprite {
     public void render(GraphicsContext context) {
         context.drawImage(image, position.x, position.y);
     }
+
 }

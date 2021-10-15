@@ -16,6 +16,10 @@ import java.util.ArrayList;
 
 public class MyGame extends Application {
 
+    ArrayList<Items> itemList1 = new ArrayList<>();
+    ArrayList<Items> itemList2 = new ArrayList<>();
+    ArrayList<Sprite> spriteList1 = new ArrayList<>();
+    ArrayList<Sprite> spriteList2 = new ArrayList<>();
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -51,22 +55,6 @@ public class MyGame extends Application {
             grid.getRowConstraints().add(rowConst);
         }
 
-        Text text = new Text("          a                                                          ");
-        Text text1 = new Text("         b                                                         ");
-        Text text2 = new Text("         c                                                         ");
-        Text text3 = new Text("         d                                                         ");
-        Text text4 = new Text("         e                                                         ");
-        Text text5 = new Text("         f                                                         ");
-
-        pane.setLeft(grid);
-        grid.setGridLinesVisible(true);
-        grid.add(text, 0,1);
-        grid.add(text1, 0,2);
-        grid.add(text2, 0,3);
-        grid.add(text3, 0,4);
-        grid.add(text4, 0,5);
-        grid.add(text5, 0,6);
-
 
         ArrayList<String> inputList = new ArrayList<>();
 
@@ -85,46 +73,64 @@ public class MyGame extends Application {
                 }
         );
 
-        Sprite player = new Sprite();
-        player.position.set(canvas.getWidth()/2, 980);
-        player.setImage("C:\\Users\\jakub\\IdeaProjects\\MyGame\\EscapeFromTheMaze\\src\\main\\resources\\playerRight.jpg");
 
         Items item1 = new Items(10, 10);
         item1.setImage("C:\\Users\\jakub\\IdeaProjects\\MyGame\\EscapeFromTheMaze\\src\\main\\resources\\item1.png");
         item1.position.set(0, -200);
 
         Items item2 = new Items(5,5);
-        item2.setImage("C:\\Users\\jakub\\IdeaProjects\\MyGame\\EscapeFromTheMaze\\src\\main\\resources\\item2.png");
+        item2.setImage("C:\\Users\\jakub\\IdeaProjects\\MyGame\\EscapeFromTheMaze\\src\\main\\resources\\item3.jpg");
         item2.position.set(300, -500);
 
-        Sprite bullet = new Sprite();
+        Items item3 = new Items(15,15);
+        item3.setImage("C:\\Users\\jakub\\IdeaProjects\\MyGame\\EscapeFromTheMaze\\src\\main\\resources\\item4.jpg");
+        item3.position.set(500, -700);
+
+        Sprite player = new Sprite(10,10,100);
+        player.position.set(canvas.getWidth()/2, 980);
+        player.setImage("C:\\Users\\jakub\\IdeaProjects\\MyGame\\EscapeFromTheMaze\\src\\main\\resources\\playerRight.jpg");
+
+        Sprite bullet = new Sprite(0,0,0);
         bullet.position.set(2000, 2000);
         bullet.setImage("C:\\Users\\jakub\\IdeaProjects\\MyGame\\EscapeFromTheMaze\\src\\main\\resources\\bullet1.png");
 
-        Sprite boom = new Sprite();
+        Sprite boom = new Sprite(0,0,0);
         boom.position.set(2000, 2000);
         boom.setImage("C:\\Users\\jakub\\IdeaProjects\\MyGame\\EscapeFromTheMaze\\src\\main\\resources\\boom.gif");
 
-        Sprite enemy = new Sprite();
+        Sprite enemy = new Sprite(0,0,0);
         enemy.position.set(150, 0);
         enemy.setImage("C:\\Users\\jakub\\IdeaProjects\\MyGame\\EscapeFromTheMaze\\src\\main\\resources\\enemy.png");
 
-        Sprite playerBlockerLEFT = new Sprite();
+        Sprite playerBlockerLEFT = new Sprite(0,0,0);
         playerBlockerLEFT.position.set(0, 980);
         playerBlockerLEFT.setImage("C:\\Users\\jakub\\IdeaProjects\\MyGame\\EscapeFromTheMaze\\src\\main\\resources\\PlayerMovementBlockerLEFT.png");
 
-        Sprite playerBlockerRIGHT = new Sprite();
+        Sprite playerBlockerRIGHT = new Sprite(0,0,0);
         playerBlockerRIGHT.position.set(canvas.getWidth(), 980);
         playerBlockerRIGHT.setImage("C:\\Users\\jakub\\IdeaProjects\\MyGame\\EscapeFromTheMaze\\src\\main\\resources\\PlayerMovementBlockerRIGHT.png");
 
+        Text text = new Text("          ----------   STATYSTYKI   ----------                      ");
+        Text text1 = new Text("         Intelekt:                                                         " + player.getIntel());
+        Text text2 = new Text("         Siła:                                                         " + player.getStr());
+
+
+        pane.setLeft(grid);
+        grid.setGridLinesVisible(true);
+        grid.add(text, 0,1);
+        grid.add(text1, 0,2);
+        grid.add(text2, 0,3);
+
         TimerExecutor timerExecutor = new TimerExecutor();
 
-        //Lists
-        ArrayList<Items> LIST1 = new ArrayList<>();
-        LIST1.add(item1);
-        LIST1.add(item2);
+        //Lists ITEMS
+        itemList1.add(item1);
+        itemList1.add(item2);
+        itemList1.add(item3);
 
-        ArrayList<Items> LIST2 = new ArrayList<>();
+        //Lists SPRITES
+        spriteList1.add(enemy);
+
 
         AnimationTimer gameLoop = new AnimationTimer() {
             @Override
@@ -153,13 +159,13 @@ public class MyGame extends Application {
                 //items velocity
                 item1.setVelocity(0, 50, item1);
                 item2.setVelocity(0, 50, item2);
-
+                item3.setVelocity(0, 50, item3);
 
                 //collision & boom effect
-                if (bullet.overlapsItems(item1)) {
-                         timerExecutor.boomEffect(7000, boom, item1);
-                         LIST1.remove(item1);
-                         LIST2.add(item1);
+                if (bullet.overlaps(enemy)) {
+                         timerExecutor.boomEffect(2, boom, enemy);
+                         spriteList1.remove(enemy);
+                         spriteList2.add(enemy);
                          bullet.position.set(2000, 2000);
                 }
 
@@ -175,17 +181,20 @@ public class MyGame extends Application {
                 }
 
                 //loop for items
-                for (Items addToEQItems : LIST1) {
-                    if (player.overlapsItems(addToEQItems)) {
-                        LIST1.stream()
+                for (Items addItemsToEQ : itemList1) {
+                    if (player.overlapsItems(addItemsToEQ)) {
+                        itemList1.stream()
                                 .filter(e -> e.getBoundary().overlaps(player.getBoundary()))
-                                .map(e -> LIST1.remove(addToEQItems))
-                                .forEach(e -> LIST2.add(addToEQItems));
+                                .map(e -> player.getStr() + addItemsToEQ.getStr())
+                                .map(e -> player.getIntel() + addItemsToEQ.getIntel())
+                                .map(e -> itemList1.remove(addItemsToEQ))
+                                .forEach(e -> itemList2.add(addItemsToEQ));
                     }
                 }
 
+
                 //logic for item's bonuses
-                if (LIST2.contains(item1)) {
+                if (itemList2.contains(item1)) {
                     player.velocity.multiply(5);
                     player.position.add(player.velocity);
                 }
@@ -197,25 +206,32 @@ public class MyGame extends Application {
                 context1.setFill(Color.BURLYWOOD);
                 context1.fillRect(0,0, scene.getWidth()*0.35, canvas1.getHeight());
 
+                //draw sprites
+                for (Sprite renderSprites : spriteList1) {
+                    renderSprites.render(context);
+                }
+
                 //draw items
-                for (Items renderItems : LIST1) {
+                for (Items renderItems : itemList1) {
                     renderItems.render(context);
                 }
 
-                for (Items playerItems : LIST2) {
+                //draw items + stream
+                double positionY = 30;
+                for (Items playerItems : itemList2) {
                     playerItems.render(context1);
-                    LIST2.stream()
-                            .map(e -> LIST2.get(0).position.x == 0)
-                            .map(e -> LIST2.get(0).position.y == 0)
-                            .map(e -> LIST2.get(0).getBoundary().y)
-                            .forEach(e -> playerItems.setPosition(0, 30));
+                    itemList2.get(0).setPosition(0,0);
+                    for (int n=0; n < itemList2.size(); n++) {
+                        itemList2.get(0).setPosition(0,positionY);
+                        positionY++;
+                        playerItems.setPosition(0,positionY);
+                    }
                 }
 
                 //draw elements
                 player.render(context);
                 playerBlockerLEFT.render(context);
                 playerBlockerRIGHT.render(context);
-                enemy.render(context);
                 boom.render(context);
                 bullet.render(context);
             }
