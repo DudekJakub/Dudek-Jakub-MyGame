@@ -22,4 +22,15 @@ public class Rectangle {
 
         return !noOverlap;
     }
+
+    public boolean noOverlaps(Rectangle other) {
+
+        boolean noOverlap =
+                this.x + this.width < other.x ||
+                        other.x + other.width < this.x ||
+                        this.y + this.height < other.y ||
+                        other.y + other.height < this.y;
+
+        return noOverlap;
+    }
 }

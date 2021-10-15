@@ -1,10 +1,5 @@
-import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Shape;
-
-import java.util.ArrayList;
-import java.util.List;
+import javafx.scene.image.Image;
 
 public class Items {
 
@@ -34,6 +29,25 @@ public class Items {
 
     public double getIntel() {
         return intel;
+    }
+
+    public Vector getVelocity() {
+        return velocity;
+    }
+
+    public void setVelocity(double x, double y, Items item) {
+        item.velocity.set(x, y);
+        item.velocity.multiply(1/60.0);
+        item.position.add(item.velocity);
+    }
+
+    public void addSpeed(Items item, Sprite sprite, double yI) {
+        item.setPosition(sprite.getPosition().x, sprite.getPosition().y);
+        item.getVelocity().y = item.getVelocity().y + yI;
+    }
+
+    public Vector getPosition() {
+        return position;
     }
 
     public void setPosition(double x, double y){
