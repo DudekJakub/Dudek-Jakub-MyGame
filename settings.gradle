@@ -1,4 +1,5 @@
 rootProject.name = 'MyGame'
 include 'EscapeFromTheMaze'
 include 'TheMaze'
+include 'MySimpleGameForKodilla'
 

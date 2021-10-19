@@ -63,8 +63,8 @@ public class Sprite {
         return boundary;
     }
 
-    public boolean overlaps(Sprite other) {
-        return this.getBoundary().overlaps(other.getBoundary());
+    public boolean overlaps(Sprite otherSprite) {
+        return this.getBoundary().overlaps(otherSprite.getBoundary());
     }
 
     public boolean overlapsItems(Items otherItem) {
