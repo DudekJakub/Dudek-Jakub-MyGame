@@ -1,8 +1,7 @@
-package com.mygame.boardGameEngine.classes.scene;
+package com.mygame.boardgame.classes.Stage;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 @Component

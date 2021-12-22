@@ -1,19 +1,21 @@
-package com.mygame.boardGameEngine;
+package com.mygame.boardgame;
 
-import com.mygame.boardGameEngine.classes.scene.Stage;
+import com.mygame.boardgame.classes.Stage.RootContent;
+import com.mygame.boardgame.classes.Stage.Stage;
 import javafx.application.Application;
 import javafx.scene.Parent;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class SnakeApplication extends Application {
 
     Stage mainStage;
+    RootContent rootContent;
 
     private Parent createContent() {
 
+        rootContent.setRoot();
 
 
-        return null;
+        return rootContent.getRoot();
     }
 
 

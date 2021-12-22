@@ -75,40 +75,40 @@ public class MyGame extends Application {
 
 
         Items item1 = new Items(10, 10);
-        item1.setImage("C:\\Users\\jakub\\IdeaProjects\\MyGame\\EscapeFromTheMaze\\src\\main\\resources\\item1.png");
+        item1.setImage("https://github.com/DudekJakub/Dudek-Jakub-MyGame/blob/4175f20006bd8a5983f656aa90dd337b480f280c/EscapeFromTheMaze/src/main/resources/item1.png");
         item1.position.set(0, -200);
 
         Items item2 = new Items(5,5);
-        item2.setImage("C:\\Users\\jakub\\IdeaProjects\\MyGame\\EscapeFromTheMaze\\src\\main\\resources\\item3.jpg");
+        item2.setImage("https://github.com/DudekJakub/Dudek-Jakub-MyGame/blob/4175f20006bd8a5983f656aa90dd337b480f280c/EscapeFromTheMaze/src/main/resources/item2.png");
         item2.position.set(300, -500);
 
         Items item3 = new Items(15,15);
-        item3.setImage("C:\\Users\\jakub\\IdeaProjects\\MyGame\\EscapeFromTheMaze\\src\\main\\resources\\item4.jpg");
+        item3.setImage("https://github.com/DudekJakub/Dudek-Jakub-MyGame/blob/4175f20006bd8a5983f656aa90dd337b480f280c/EscapeFromTheMaze/src/main/resources/item3.jpg");
         item3.position.set(500, -700);
 
         Sprite player = new Sprite(10,10,100);
         player.position.set(canvas.getWidth()/2, 980);
-        player.setImage("C:\\Users\\jakub\\IdeaProjects\\MyGame\\EscapeFromTheMaze\\src\\main\\resources\\playerRight.jpg");
+        player.setImage("https://github.com/DudekJakub/Dudek-Jakub-MyGame/blob/4175f20006bd8a5983f656aa90dd337b480f280c/EscapeFromTheMaze/src/main/resources/playerRight.jpg");
 
         Sprite bullet = new Sprite(0,0,0);
         bullet.position.set(2000, 2000);
-        bullet.setImage("C:\\Users\\jakub\\IdeaProjects\\MyGame\\EscapeFromTheMaze\\src\\main\\resources\\bullet1.png");
+        bullet.setImage("https://github.com/DudekJakub/Dudek-Jakub-MyGame/blob/4175f20006bd8a5983f656aa90dd337b480f280c/EscapeFromTheMaze/src/main/resources/bullet1.png");
 
         Sprite boom = new Sprite(0,0,0);
         boom.position.set(2000, 2000);
-        boom.setImage("C:\\Users\\jakub\\IdeaProjects\\MyGame\\EscapeFromTheMaze\\src\\main\\resources\\boom.gif");
+        boom.setImage("https://github.com/DudekJakub/Dudek-Jakub-MyGame/blob/4175f20006bd8a5983f656aa90dd337b480f280c/EscapeFromTheMaze/src/main/resources/boom.gif");
 
         Sprite enemy = new Sprite(0,0,0);
         enemy.position.set(150, 0);
-        enemy.setImage("C:\\Users\\jakub\\IdeaProjects\\MyGame\\EscapeFromTheMaze\\src\\main\\resources\\enemy.png");
+        enemy.setImage("https://github.com/DudekJakub/Dudek-Jakub-MyGame/blob/4175f20006bd8a5983f656aa90dd337b480f280c/EscapeFromTheMaze/src/main/resources/enemy.png");
 
         Sprite playerBlockerLEFT = new Sprite(0,0,0);
         playerBlockerLEFT.position.set(0, 980);
-        playerBlockerLEFT.setImage("C:\\Users\\jakub\\IdeaProjects\\MyGame\\EscapeFromTheMaze\\src\\main\\resources\\PlayerMovementBlockerLEFT.png");
+        playerBlockerLEFT.setImage("https://github.com/DudekJakub/Dudek-Jakub-MyGame/blob/4175f20006bd8a5983f656aa90dd337b480f280c/EscapeFromTheMaze/src/main/resources/PlayerMovementBlockerLEFT.png");
 
         Sprite playerBlockerRIGHT = new Sprite(0,0,0);
         playerBlockerRIGHT.position.set(canvas.getWidth(), 980);
-        playerBlockerRIGHT.setImage("C:\\Users\\jakub\\IdeaProjects\\MyGame\\EscapeFromTheMaze\\src\\main\\resources\\PlayerMovementBlockerRIGHT.png");
+        playerBlockerRIGHT.setImage("https://github.com/DudekJakub/Dudek-Jakub-MyGame/blob/4175f20006bd8a5983f656aa90dd337b480f280c/EscapeFromTheMaze/src/main/resources/PlayerMovementBlockerRIGHT.png");
 
         Text text = new Text("          ----------   STATYSTYKI   ----------                      ");
         Text text1 = new Text("         Intelekt:                                                         " + player.getIntel());
