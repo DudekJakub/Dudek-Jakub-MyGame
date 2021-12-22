@@ -1,0 +1,29 @@
+plugins {
+	id 'org.springframework.boot'
+	id 'io.spring.dependency-management' 
+	id 'java'
+	id 'application'
+	id 'org.openjfx.javafxplugin' version '0.0.8'
+}
+
+javafx {
+	version = "17.0.0.1"
+	modules = [ 'javafx.controls' ]
+}
+
+group = 'com.MyGame'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+	useJUnitPlatform()
+}
